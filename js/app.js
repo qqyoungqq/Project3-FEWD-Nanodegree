@@ -104,6 +104,7 @@ Player.prototype.update = function() {
 
     //player is set to the initial position once it's on water
     if (this.y < 83) {
+        score.increase();
         this.initialpos();
     }
 }
