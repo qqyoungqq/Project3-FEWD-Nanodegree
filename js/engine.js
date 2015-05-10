@@ -1,7 +1,8 @@
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
- * draws the initial game board on the screen, and then calls the update and
- * render methods on your player and enemy objects (defined in your app.js).
+ * draws the initial game board on the screen when game starts, and then calls 
+ * the update and render methods on player,enemy,life and score objects 
+ * (defined in app.js).
  *
  * A game engine works by drawing the entire game screen over and over, kind of
  * like a flipbook you may have created as a kid. When your player moves across
@@ -26,14 +27,14 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 640;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
     function main() {
-        /* Get our time delta information which is required if your game
+        /* Get our time delta information which is required if the game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
          * would be the same for everyone (regardless of how fast their
@@ -46,7 +47,9 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
-        render();
+        if (renderFlag === true) {
+            render();
+        }
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -64,37 +67,29 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
         lastTime = Date.now();
         main();
     }
 
-    /* This function is called by main (our game loop) and itself calls all
-     * of the functions which may need to update entity's data. Based on how
-     * you implement your collision detection (when two entities occupy the
-     * same space, for instance when your character should die), you may find
-     * the need to add an additional function call here. For now, we've left
-     * it commented out - you may or may not want to implement this
-     * functionality this way (you could just implement collision detection
-     * on the entities themselves within your app.js file).
-     */
+    /* This function is called by main (our game loop) and itself calls
+     * updateEntities(dt) which is needed to update entity's data. */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
     }
 
-    /* This is called by the update function  and loops through all of the
-     * objects within your allEnemies array as defined in app.js and calls
+    /* This is called by the update function and loops through all of the
+     * objects within the allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your
-     * player object. These update methods should focus purely on updating
-     * the data/properties related to  the object. Do your drawing in your
-     * render methods.
+     * player object and update function for your gem object. These update 
+     * methods focus purely on updating the data/properties related to the 
+     * object. Drawing method is in related render methods.
      */
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
         player.update();
+        gem.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -135,44 +130,59 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
-
-        renderEntities();
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,590,505,60); //draw a rectangular background for life/score display.
+        renderEntities();           //draw the enemies, player, gem and life entities
+        renderReset();              //draw the restart button
     }
 
     /* This function is called by the render function and is called on each game
      * tick. It's purpose is to then call the render functions you have defined
-     * on your enemy and player entities within app.js
+     * on your enemy, player, gem and life entities within app.js
      */
     function renderEntities() {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
-            enemy.render();
-        });
+         if (renderFlag === true) {
+            allEnemies.forEach(function(enemy) {
+                enemy.render();
+            });
 
-        player.render();
+            player.render();
+
+            gem.render();
+
+            score.render();
+
+            life.render();
+        }
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    function reset() {
-        // noop
+    /* This function draw restart button on the screen */
+    function renderReset() {
+        document.getElementById('restart').innerHTML = "Restart";
+        document.getElementById('restart-button').style.borderColor = "black";
     }
 
-    /* Go ahead and load all of the images we know we're going to need to
-     * draw our game level. Then set init as the callback method, so that when
-     * all of these images are properly loaded our game will start.
+    /* Load all of the images that need to draw the game level. Then set init as 
+     * the callback method, so that when all of these images are properly loaded 
+     * our game will start.
      */
     Resources.load([
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Gem_Blue.png',
+        'images/Gem_Green.png',
+        'images/Gem_Orange.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 

@@ -1,3 +1,56 @@
 body {
     text-align: center;
+    font-family: 'Lato', sans-serif;
+    width: 600px;
+    margin: auto;
+}
+#selection {
+    position: absolute;
+    width: 600px;
+    height: 640px;
+    margin: 20px 20px 20px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+}
+h2 {
+    text-align: left;
+    margin: 20px 20px 20px 50px;
+}
+h3 {
+    text-align: left;
+    margin: 20px 20px 20px 50px;
+}
+.playerImg {
+	height: 100px;
+	width: 65px;
+	margin: 0px 10px 10px 10px;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+#gameStart {
+    width: 100px;
+    height: 30px;
+    border-color: black;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+#restart-button {
+    text-align: center;
+    display: block;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+}
+#restart {
+    color: black;
+    font-size: 20pt;
+    text-decoration: none;
 }

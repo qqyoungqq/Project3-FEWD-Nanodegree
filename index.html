@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet'>
 </head>
 <body>
+	<div id="selection">
+		<h1>Welcome to Udacity Frogger!</h1>
+		 <hr>
+		 	<h2>How to Play:</h2>
+		 	<h3>1. Select a player and click "Start Game" button</h3>
+		 	<h3>2. Use your arrow keys to move</h2>
+		 	<h3>3. Avoid bugs and do not fall into the water</h2>
+		 	<h3>4. Collect gems as many as possible</h2>
+		 <hr>
+			<h2>Select a player:</h2>
+			<img id="player0" class="playerImg" onclick="playerSelector(this.id,0)" src="images/char-boy.png"/>
+			<img id="player1" class="playerImg" onclick="playerSelector(this.id,1)" src="images/char-cat-girl.png"/>
+			<img id="player2" class="playerImg" onclick="playerSelector(this.id,2)" src="images/char-horn-girl.png"/>
+			<img id="player3" class="playerImg" onclick="playerSelector(this.id,3)" src="images/char-pink-girl.png"/>
+			<img id="player4" class="playerImg" onclick="playerSelector(this.id,4)" src="images/char-princess-girl.png"/>
+		<div>
+			<button id="gameStart" class="button" onclick="startSelector();">Start Game</button>
+		</div>
+		 <hr>
+			<p id="qianyang">Created by Qian Yang</p>
+			<a href="https://www.linkedin.com/pub/qian-yang/32/211/593"><img src="images/linkedin.png" alt="linkedin logo" style="border:none;"></a>
+			<a href="https://github.com/qqyoungqq"><img src="images/github.png" alt="github logo" sytle="border:none"></a>
+	</div>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <div id="restart-button">
+    	<a id="restart" href="./index.html"></a>
+    </div>
 </body>
 </html>
