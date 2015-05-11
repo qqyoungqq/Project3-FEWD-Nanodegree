@@ -1,6 +1,3 @@
-// Whole-script strict mode syntax
-"use strict";
-
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen when game starts, and then calls 
@@ -18,6 +15,7 @@
  * a little simpler to work with.
  */
 var Engine = (function(global) {
+    "use strict";
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
