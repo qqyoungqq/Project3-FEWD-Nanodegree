@@ -4,6 +4,7 @@ body {
     width: 600px;
     margin: auto;
 }
+
 #selection {
     position: absolute;
     width: 600px;
@@ -14,22 +15,26 @@ body {
     background-color: white;
     text-align: center;
 }
+
 h2 {
     text-align: left;
     margin: 20px 20px 20px 50px;
 }
+
 h3 {
     text-align: left;
     margin: 20px 20px 20px 50px;
 }
+
 .playerImg {
-	height: 100px;
-	width: 65px;
-	margin: 0px 10px 10px 10px;
+    height: 100px;
+    width: 65px;
+    margin: 0 10px 10px 10px;
     cursor: pointer;
     border: 2px solid white;
     border-radius: 5px;
 }
+
 #gameStart {
     width: 100px;
     height: 30px;
@@ -38,6 +43,7 @@ h3 {
     border-radius: 5px;
     text-align: center;
 }
+
 #restart-button {
     text-align: center;
     display: block;
@@ -48,6 +54,7 @@ h3 {
     border-color: white;
     border-radius: 5px;
 }
+
 #restart {
     color: black;
     font-size: 20pt;
