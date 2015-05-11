@@ -11,7 +11,10 @@ The repository includes the following files:
 * **js/engine.js**: Updates entities and render, draws game board and calls the methods on objects(player, enemy, life and score)
 * **js/resources.js**: An image loading utility. 
 * **images/**: Contains the png images files which are used when displaying the game.
-* **README.md**: Contains instructions on how to play the game and other information.
+* **README.md**: Contains how-to-run instructions and how-to-play instructions.
+
+## Instructions on how to run the app
+Visit my Github page (http://qqyoungqq.github.io/Project3-FEWD-Nanodegree/) and enjoy the app!
 
 ## Instructions on how to play the game (Note: mobile is not supported currently)
 1. Select a player and click "Start Game" button.
