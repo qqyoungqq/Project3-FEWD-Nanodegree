@@ -12,7 +12,7 @@ var renderFlag = false;
 //*********************** Enemy Class *******************************************
 var Enemy = function() {
     // The image for our enemies
-    this.sprite = 'images/enemy-bug.png';
+    this.img = 'images/enemy-bug.png';
 
     // The possible y position of enemies
     this.yposPoss = [83,166,249]; 
@@ -73,7 +73,7 @@ Enemy.prototype.update = function(dt,player,life) {
 
 // Draw the enemy on the screen
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.img), this.x, this.y);
 };
 //*********************** End Enemy Class *******************************************
 
@@ -122,6 +122,8 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(playerImages[playerInd]), this.x, this.y);
 };
+//Prototypal Inheritance 
+//Player.prototype.render = Object.create(Enemy.prototype.render);
 //*********************** End Player Class **********************************************
 
 
@@ -142,7 +144,7 @@ var Gem = function() {
 
 // Set the image of gem and position of gem
 Gem.prototype.set = function() {
-    this.gimg = this.gemImg[Math.floor(Math.random() * 3)];
+    this.img = this.gemImg[Math.floor(Math.random() * 3)];
     this.x = this.xposPoss[Math.floor(Math.random() * 5)];    
     this.y = this.yposPoss[Math.floor(Math.random() * 3)];
 };
@@ -157,15 +159,16 @@ Gem.prototype.update = function(score) {
 
 // Draw the gem on the screen
 Gem.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.gimg), this.x, this.y);
+    ctx.drawImage(Resources.get(this.img), this.x, this.y);
 };
+//Gem.prototype.render = Object.create(Enemy.prototype.render);
 //*********************** End Gem Class *************************************************
 
 
 //*********************** Life Class ****************************************************
 var Life = function() {
     // The image of life
-    this.limg = 'images/Heart.png';
+    this.img = 'images/Heart.png';
 
     // The initial number of life 
     this.lifeNum = 5;
@@ -176,7 +179,7 @@ Life.prototype.render = function() {
     var x = 0; 
     if (this.lifeNum > 0) {
         for (var i = 0; i < this.lifeNum; i++) {
-            ctx.drawImage(Resources.get(this.limg), x, 570);  
+            ctx.drawImage(Resources.get(this.img), x, 570);  
             x=x+50;
         }
     } else {
@@ -195,7 +198,7 @@ Life.prototype.render = function() {
 
 // decrease the number of life
 Life.prototype.decrease = function() {
-    this.lifeNum = this.lifeNum - 1;
+    this.lifeNum--;
 };
 //*********************** End Life Class ************************************************
 
@@ -207,7 +210,7 @@ var Score = function() {
 
 // increase the score
 Score.prototype.increase = function() {
-    this.score = this.score + 1;
+    this.score++;
 };
 
 // Draw score on the screen when game is not over
