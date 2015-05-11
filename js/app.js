@@ -1,5 +1,3 @@
-// Whole-script strict mode syntax
-"use strict";
 //************************ Define some variables *********************************
 var playerImages = [
     'images/char-boy.png','images/char-cat-girl.png',
@@ -11,6 +9,7 @@ var userSelections = false;
 var renderFlag = false;
 //*********************** Enemy Class *******************************************
 var Enemy = function() {
+    "use strict";
     // The image for our enemies
     this.img = 'images/enemy-bug.png';
 
@@ -29,6 +28,7 @@ var Enemy = function() {
 
 // Set the enemy's initial position
 Enemy.prototype.initialpos = function() {
+    "use strict";
     var y = this.yposPoss;
     var s = this.speedRange;
     var len = y.length;
@@ -40,6 +40,7 @@ Enemy.prototype.initialpos = function() {
 // Update the enemy's position
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt,player,life) {
+    "use strict";
     var xMax = 600;
 
     // Upldate the position by multiplying the speed by the dt parameter
@@ -73,6 +74,7 @@ Enemy.prototype.update = function(dt,player,life) {
 
 // Draw the enemy on the screen
 Enemy.prototype.render = function() {
+    "use strict";
     ctx.drawImage(Resources.get(this.img), this.x, this.y);
 };
 //*********************** End Enemy Class *******************************************
@@ -80,18 +82,21 @@ Enemy.prototype.render = function() {
 
 //*********************** Player Class **********************************************
 var Player = function() {
+    "use strict";
     // Set the player's initial position
     this.initialpos();
 };
 
 // Set the player's initial position
 Player.prototype.initialpos = function() {
+    "use strict";
     this.x = 202;    
     this.y = 415;
 };
 
 // Update the player's position
 Player.prototype.update = function(score) {
+    "use strict";
     if (this.inpkey === 'left' && this.x !== 0) {
         this.x = this.x - 101;
     }
@@ -115,11 +120,13 @@ Player.prototype.update = function(score) {
 
 // Handle the input from key presses
 Player.prototype.handleInput = function(key) {
+    "use strict";
     this.inpkey = key;
 };
 
 // Draw the player on the screen
 Player.prototype.render = function() {
+    "use strict";
     ctx.drawImage(Resources.get(playerImages[playerInd]), this.x, this.y);
 };
 //Prototypal Inheritance 
@@ -129,6 +136,7 @@ Player.prototype.render = function() {
 
 //*********************** Gem Class *****************************************************
 var Gem = function() {
+    "use strict";
     // The possible image of gems
     this.gemImg = ['images/Gem_Blue.png','images/Gem_Green.png','images/Gem_Orange.png'];
 
@@ -144,6 +152,7 @@ var Gem = function() {
 
 // Set the image of gem and position of gem
 Gem.prototype.set = function() {
+    "use strict";
     this.img = this.gemImg[Math.floor(Math.random() * 3)];
     this.x = this.xposPoss[Math.floor(Math.random() * 5)];    
     this.y = this.yposPoss[Math.floor(Math.random() * 3)];
@@ -151,6 +160,7 @@ Gem.prototype.set = function() {
 
 // Update the image/position of gem when it is collected by the player
 Gem.prototype.update = function(score) {
+    "use strict";
     if (this.x === player.x && this.y === player.y){
         this.set();
         score.increase();
@@ -159,6 +169,7 @@ Gem.prototype.update = function(score) {
 
 // Draw the gem on the screen
 Gem.prototype.render = function() {
+    "use strict";
     ctx.drawImage(Resources.get(this.img), this.x, this.y);
 };
 //Gem.prototype.render = Object.create(Enemy.prototype.render);
@@ -167,6 +178,7 @@ Gem.prototype.render = function() {
 
 //*********************** Life Class ****************************************************
 var Life = function() {
+    "use strict";
     // The image of life
     this.img = 'images/Heart.png';
 
@@ -176,6 +188,7 @@ var Life = function() {
 
 // Draw life on the screen and draw game over when no life left
 Life.prototype.render = function() {
+    "use strict";
     var x = 0; 
     if (this.lifeNum > 0) {
         for (var i = 0; i < this.lifeNum; i++) {
@@ -198,6 +211,7 @@ Life.prototype.render = function() {
 
 // decrease the number of life
 Life.prototype.decrease = function() {
+    "use strict";
     this.lifeNum--;
 };
 //*********************** End Life Class ************************************************
@@ -205,16 +219,19 @@ Life.prototype.decrease = function() {
 
 //*********************** Score Class ***************************************************
 var Score = function() {
+    "use strict";
     this.score = 0;
 };
 
 // increase the score
 Score.prototype.increase = function() {
+    "use strict";
     this.score++;
 };
 
 // Draw score on the screen when game is not over
 Score.prototype.render = function() {
+    "use strict";
     if (life.lifeNum > 0) {
         ctx.font = "24pt Impact";
         ctx.font = "24pt";
@@ -229,6 +246,7 @@ Score.prototype.render = function() {
 //Parameter: imgId, ID of image (defined in index.html)
 //Parameter: imgInd, image Index (0-4 defined in index.html)
 function playerSelector (imgId, imgInd) {
+    "use strict";
     playerInd = imgInd;
     userSelections=true;
     for (var i=0; i<5; i++) {
@@ -239,6 +257,7 @@ function playerSelector (imgId, imgInd) {
 
 //Start the game when player selection is complete by clicking the start button 
 function startSelector () {
+    "use strict";
     if (userSelections === true) {
         document.getElementById('selection').style.display = "none";
         renderFlag = true;
