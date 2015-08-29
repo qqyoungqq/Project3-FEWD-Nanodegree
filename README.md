@@ -14,7 +14,7 @@ The repository includes the following files:
 * **README.md**: Contains how-to-run instructions and how-to-play instructions.
 
 ## Instructions on how to run the app
-Visit my Github page (http://qqyoungqq.github.io/Project3-FEWD-Nanodegree/) and enjoy the app!
+Visit my (Github page) [nanodegree-classic-arcadegame] and enjoy the app!
 
 ## Instructions on how to play the game (Note: mobile is not supported currently)
 1. Select a player and click "Start Game" button.
